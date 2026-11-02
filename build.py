@@ -236,11 +236,11 @@ def head(p, title, desc, path, kw=''):
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preload" as="style" href="{fonts}" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="{fonts}"></noscript>
-<link rel="stylesheet" href="{p}assets/style.css?v=2">
+<link rel="stylesheet" href="{p}assets/style.css?v=3">
 <script type="application/ld+json">{{"@context":"https://schema.org","@type":"RoofingContractor","name":"Eco Roofing","alternateName":"Eco Roofing and Driveway Restoration","url":"{SITE}/","telephone":"+353871306744","email":"{EMAIL}","image":"{SITE}/img/v3.jpg","logo":"{SITE}/img/og-logo.jpg","address":{{"@type":"PostalAddress","addressLocality":"Dublin","addressRegion":"Co. Dublin","addressCountry":"IE"}},"priceRange":"€€","areaServed":[{AREA_LD}],"knowsAbout":["Roof repairs","Roof replacement","Re-roofing","Flat roofing","EPDM rubber roofing","GRP fibreglass roofing","Felt roofing","Slate roofing","Tile roofing","Chimney repairs","Fascias, soffits and guttering","Roof cleaning","Moss removal"]}}</script>"""
 
 def brand(p, cls='brand'):
-    return f'<a class="{cls}" href="{p}" aria-label="Eco Roofing home"><img src="{p}img/mark.png" alt="" width="620" height="410"><span class="wm"><b>ECO <i>ROOFING</i></b><small>Roofing specialists · Dublin</small></span></a>'
+    return f'<a class="{cls}" href="{p}" aria-label="Eco Roofing home"><img src="{p}img/mark-sm.webp" alt="" width="480" height="318"><span class="wm"><b>ECO <i>ROOFING</i></b><small>Roofing specialists · Dublin</small></span></a>'
 
 def header(p, active):
     def on(k): return ' class="on" aria-current="page"' if k == active else ''
@@ -339,7 +339,7 @@ def scripts(p):
     return f'''<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script>
-<script src="{p}assets/site.js?v=2" defer></script>'''
+<script src="{p}assets/site.js?v=3" defer></script>'''
 
 def page(path, active, title, desc, body, intro=False, kw='', ld=''):
     p = '../' * path.count('/')
@@ -352,7 +352,7 @@ def page(path, active, title, desc, body, intro=False, kw='', ld=''):
     if intro:
         # intro: the logo is there straight away, green leaves blow in and swirl into it, then the screen slides away left
         loader = f"""<div id="loader" aria-hidden="true">
-<div class="box"><img class="mk" src="{p}img/mark.png" alt="" width="620" height="410">
+<div class="box"><img class="mk" src="{p}img/mark.webp" alt="" width="1100" height="728">
 <div class="word"><b>ECO <i>ROOFING</i></b><small>Roofing specialists · Dublin</small></div></div></div>"""
     intro_js = ('<script>' + open(os.path.join(ROOT, 'assets', 'intro.js'), encoding='utf-8').read() + '</script>') if intro else ''
     html = f'''{head_html}
