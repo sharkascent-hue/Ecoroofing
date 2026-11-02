@@ -236,7 +236,7 @@ def head(p, title, desc, path, kw=''):
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preload" as="style" href="{fonts}" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="{fonts}"></noscript>
-<link rel="stylesheet" href="{p}assets/style.css?v=1">
+<link rel="stylesheet" href="{p}assets/style.css?v=2">
 <script type="application/ld+json">{{"@context":"https://schema.org","@type":"RoofingContractor","name":"Eco Roofing","alternateName":"Eco Roofing and Driveway Restoration","url":"{SITE}/","telephone":"+353871306744","email":"{EMAIL}","image":"{SITE}/img/v3.jpg","logo":"{SITE}/img/og-logo.jpg","address":{{"@type":"PostalAddress","addressLocality":"Dublin","addressRegion":"Co. Dublin","addressCountry":"IE"}},"priceRange":"€€","areaServed":[{AREA_LD}],"knowsAbout":["Roof repairs","Roof replacement","Re-roofing","Flat roofing","EPDM rubber roofing","GRP fibreglass roofing","Felt roofing","Slate roofing","Tile roofing","Chimney repairs","Fascias, soffits and guttering","Roof cleaning","Moss removal"]}}</script>"""
 
 def brand(p, cls='brand'):
@@ -339,7 +339,7 @@ def scripts(p):
     return f'''<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script>
-<script src="{p}assets/site.js?v=1" defer></script>'''
+<script src="{p}assets/site.js?v=2" defer></script>'''
 
 def page(path, active, title, desc, body, intro=False, kw='', ld=''):
     p = '../' * path.count('/')
@@ -350,15 +350,9 @@ def page(path, active, title, desc, body, intro=False, kw='', ld=''):
         head_html += '\n<script>try{if(!sessionStorage.getItem("eco_intro")||/[?&]intro/.test(location.search))document.documentElement.classList.add("intro")}catch(e){document.documentElement.classList.add("intro")}</script>'
     loader = ''
     if intro:
-        # intro: the house outline draws itself, the leaves grow out of the roof, the logo settles in, then a breeze of leaves blows the screen away
+        # intro: the logo is there straight away, green leaves blow in and swirl into it, then the screen slides away left
         loader = f"""<div id="loader" aria-hidden="true">
-<div class="box"><svg class="draw" viewBox="0 0 310 205" fill="none" stroke-linecap="round" stroke-linejoin="round">
-<path class="ln b" d="M12 150 L78 90 L102 112 M60 106 L60 92 M128 148 L160 120 L192 148 M218 150 L242 128 L298 150"/>
-<path class="ln b" d="M70 96 L126 150 L176 150 L120 96 Z M168 150 L220 104 L272 150"/>
-<path class="ln g" d="M30 172 C95 158 150 206 290 166"/><path class="ln b" d="M18 182 C90 172 140 214 296 178"/>
-<g class="leaves"><path class="lf l1" d="M150 104 C120 92 110 64 118 44 C140 52 156 78 150 104 Z"/><path class="lf l2" d="M158 108 C162 74 186 52 210 46 C214 76 192 102 158 108 Z"/></g>
-</svg>
-<img class="mk" src="{p}img/mark.png" alt="">
+<div class="box"><img class="mk" src="{p}img/mark.png" alt="" width="620" height="410">
 <div class="word"><b>ECO <i>ROOFING</i></b><small>Roofing specialists · Dublin</small></div></div></div>"""
     intro_js = ('<script>' + open(os.path.join(ROOT, 'assets', 'intro.js'), encoding='utf-8').read() + '</script>') if intro else ''
     html = f'''{head_html}
@@ -490,7 +484,7 @@ def home(p):
 <div class="wrap">
 <div>
 <div class="gbadge">{I['leaf']}<span><b>Eco-friendly</b> roofing · family-run · 15+ years</span></div>
-<span class="eyebrow">Dublin · Wicklow · Kildare · Meath · Louth</span>
+<span class="eyebrow"><span class="lg">Dublin · Wicklow · Kildare · Meath · Louth</span><span class="sm">Dublin &amp; surrounding counties</span></span>
 <h1>Dublin’s eco-friendly <span class="blue">roofing experts.</span></h1>
 <p class="lead">Roof repairs, re-roofing, flat roofs, slate and tile, chimneys, guttering and roof cleaning. Fully insured, honest prices and quality craftsmanship, with less waste on every job.</p>
 <div class="btn-row"><a class="btn btn-blue" href="#quote" data-quote>Get a free quote {I['arrow']}</a><a class="btn btn-ghost" href="{p}gallery/">See our work</a></div>

@@ -53,28 +53,23 @@ p{margin:0 0 1em;max-width:62ch}
 .tlink svg{width:16px;height:16px;transition:transform .25s}
 .tlink:hover svg{transform:translateX(4px)}
 
-/* ---------- intro: the house draws itself, leaves grow, the logo settles, a breeze of leaves blows it away ---------- */
-#loader{position:fixed;inset:0;z-index:1000;display:none;place-items:center;background:radial-gradient(120% 90% at 50% 42%,#fff 0%,#f1f9f4 55%,#e2f1e8 100%)}
+/* ---------- intro: logo shows, green leaves blow into it, then the screen slides away to the left ---------- */
+#loader{position:fixed;inset:0;z-index:1000;display:none;place-items:center;overflow:hidden;background:radial-gradient(120% 90% at 50% 42%,#fff 0%,#f1f9f4 55%,#e2f1e8 100%)}
 html.intro #loader{display:grid}
 html.intro body{overflow:hidden}
-#loader .box{position:relative;width:min(68vw,340px);display:grid;justify-items:center}
-#loader svg.draw{width:100%;height:auto;display:block;overflow:visible}
-#loader .ln{stroke-width:7}
-#loader .ln.b{stroke:var(--azure)}
-#loader .ln.g{stroke:var(--blue)}
-#loader .lf{fill:#5fb648;transform-box:fill-box;transform-origin:50% 100%;opacity:0}
-#loader .lf.l2{fill:#3f9a3a}
-#loader .mk{position:absolute;left:0;top:0;width:100%;height:auto;opacity:0;transform:scale(.97)}
-#loader.lit .mk{opacity:1;transform:none;transition:opacity .45s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
-#loader.lit svg.draw{opacity:0;transition:opacity .45s ease .1s}
-#loader .word{margin-top:16px;text-align:center;opacity:0;transform:translateY(14px)}
-#loader.lit .word{opacity:1;transform:none;transition:opacity .55s .15s,transform .6s cubic-bezier(.2,.8,.2,1) .15s}
+#loader .box{position:relative;width:min(72vw,360px);display:grid;justify-items:center;animation:lgIn .6s cubic-bezier(.2,.8,.2,1) both}
+#loader .mk{width:100%;height:auto;display:block}
+#loader.got .mk{animation:lgPop .5s cubic-bezier(.3,1.6,.5,1)}
+#loader .word{margin-top:14px;text-align:center;animation:lgIn .6s .15s cubic-bezier(.2,.8,.2,1) both}
 #loader .word b{display:block;font-family:var(--head);font-weight:800;font-size:clamp(1.9rem,8vw,2.7rem);letter-spacing:.03em;line-height:1;color:var(--blue)}
 #loader .word b i{font-style:normal;color:var(--azure)}
 #loader .word small{display:block;margin-top:8px;font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);font-weight:700}
-html.intro-out #loader{opacity:0;transform:scale(1.03);transition:opacity .75s ease .1s,transform .9s cubic-bezier(.2,.8,.2,1)}
-.blowleaf{position:fixed;left:0;z-index:1001;width:26px;height:26px;margin-top:-13px;pointer-events:none;border-radius:0 80% 0 80%;background:linear-gradient(135deg,#8fd86a,#2f8f3a);opacity:0}
-.blowleaf.b{background:linear-gradient(135deg,#b6e58e,#4caf50);width:18px;height:18px}
+#loader .blowleaf{position:absolute;left:0;top:0;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:0 80% 0 80%;background:linear-gradient(135deg,#9be06f,#2f8f3a);box-shadow:inset -2px -2px 0 rgba(0,0,0,.08);pointer-events:none;will-change:transform,opacity}
+#loader .blowleaf.b{background:linear-gradient(135deg,#c2ea96,#4caf50);width:24px;height:24px;margin:-12px 0 0 -12px}
+#loader .blowleaf.c{background:linear-gradient(135deg,#6cc04a,#1f7a37);width:44px;height:44px;margin:-22px 0 0 -22px}
+html.intro-out #loader{transform:translateX(-101%);transition:transform .85s cubic-bezier(.76,0,.24,1)}
+@keyframes lgIn{from{opacity:0;transform:translateY(14px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes lgPop{0%{transform:scale(1)}40%{transform:scale(1.05)}100%{transform:scale(1)}}
 @media (prefers-reduced-motion:reduce){html.intro #loader{display:none}html.intro body{overflow:auto}}
 
 /* ---------- header ---------- */
@@ -673,4 +668,15 @@ html.menu-open .hdr{background:#fff}
   .hero{padding-top:118px}.phero{padding-top:130px}
   .mnav{padding-top:84px}
 }
-@media (max-width:380px){.wm{display:none}}
+
+/* phone header: logo + name, short quote button, menu button never squashed */
+.eyebrow .sm{display:none}
+.hdr .qbtn,.burger{flex:none}
+.brand{min-width:0}
+@media (max-width:600px){
+  .eyebrow .lg{display:none}.eyebrow .sm{display:inline}
+  .brand{gap:7px}.brand img{height:38px}.wm b{font-size:.98rem}
+  .hdr .qbtn{padding:10px 13px;font-size:.82rem;margin-left:auto}
+  .qbtn .q1{display:none}.qbtn .q2{display:inline}
+}
+@media (max-width:370px){.wm{display:none}}
